@@ -327,21 +327,21 @@ function showSimpleFinalMessage() {
     // Crear elemento de mensaje simple
     const finalElement = document.createElement('div');
     finalElement.innerHTML = `
-        <div style="font-family: 'Dancing Script', cursive; font-size: clamp(2rem, 8vw, 3.5rem); color: #ffc107; font-weight: 700; text-shadow: 3px 3px 6px rgba(0,0,0,0.5); text-align: center; margin-bottom: 20px;">te quiere SHAOPRO :D</div>
-        <div style="font-family: 'Poppins', sans-serif; font-size: clamp(1rem, 4vw, 1.3rem); color: #e91e63; font-weight: 600; text-align: center; font-style: italic;">si te gusto mi detalle dimelo xD jajja</div>
+        <div style="font-family: 'Dancing Script', cursive; font-size: clamp(2rem, 8vw, 3.5rem); color: #ffc107; font-weight: 700; text-shadow: 3px 3px 6px rgba(0,0,0,0.5); text-align: center; margin-bottom: 20px;">te quiere Shaopro :D</div>
+        <div style="font-family: 'Poppins', sans-serif; font-size: clamp(1rem, 4vw, 1.3rem); color: #e91e63; font-weight: 600; text-align: center; font-style: italic;">EL Mejor programador del ECUADOR xD</div>
     `;
     
     // Estilos inline para centrado perfecto y responsive
     finalElement.style.position = 'fixed';
     finalElement.style.top = '0';
     finalElement.style.left = '0';
-    finalElement.style.width = '80vw';
-    finalElement.style.height = '80vh';
+    finalElement.style.width = '100vw';
+    finalElement.style.height = '100vh';
     finalElement.style.display = 'flex';
     finalElement.style.flexDirection = 'column';
     finalElement.style.justifyContent = 'center';
     finalElement.style.alignItems = 'center';
-    finalElement.style.background = 'rgba(255, 255, 255, 0.95)';
+    finalElement.style.background = 'rgba(255, 255, 255, 0.85)';
     finalElement.style.padding = 'clamp(20px, 5vw, 40px)';
     finalElement.style.borderRadius = 'clamp(15px, 4vw, 30px)';
     finalElement.style.boxShadow = '0 20px 50px rgba(0,0,0,0.3)';
