@@ -185,8 +185,9 @@ body {
     opacity: 0;
     transform: scale(0);
     transition: all 1.5s ease;
-    z-index: 6;
+    z-index: 1100;
     filter: drop-shadow(0 0 30px rgba(255, 193, 7, 0.7));
+    display: block;
 }
 
 .flower.growing {
@@ -300,15 +301,15 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    max-width: 600px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    max-width: 700px;
+    width: 90%;
     opacity: 0;
     transition: all 1s ease;
     z-index: 11;
+    padding: 20px;
 }
 
 .final-words-container.show {
@@ -318,14 +319,17 @@ body {
 .final-word {
     background: linear-gradient(45deg, #e91e63, #f06292);
     color: white;
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-size: 1.2rem;
+    padding: 8px 12px;
+    border-radius: 15px;
+    font-size: 1rem;
     font-weight: 600;
     box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
     border: 2px solid white;
     transform: scale(0);
     animation: wordAppear 0.5s ease-out forwards;
+    text-align: center;
+    min-width: 60px;
+    white-space: nowrap;
 }
 
 @keyframes wordAppear {
@@ -344,6 +348,140 @@ body {
     font-family: 'Dancing Script', cursive;
     margin-top: 15px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* ===== MENSAJE PERSONALIZADO ===== */
+.personal-message {
+    background: linear-gradient(45deg, #e91e63, #f06292) !important;
+    font-size: 1.5rem !important;
+    padding: 15px 25px !important;
+}
+
+.personal-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* ===== BOTÓN DE REINICIO ===== */
+.restart-button {
+    background: linear-gradient(45deg, #9c27b0, #e91e63);
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(156, 39, 176, 0.3);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: scale(0);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    z-index: 12;
+    min-width: 120px;
+    justify-content: center;
+}
+
+.restart-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(156, 39, 176, 0.4);
+    background: linear-gradient(45deg, #e91e63, #9c27b0);
+}
+
+.restart-button.show {
+    opacity: 1;
+    transform: scale(1);
+    animation: buttonPulse 2s ease-in-out infinite;
+}
+
+@keyframes buttonPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* ===== OSCURIDAD ===== */
+.dark-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.dark-overlay.show {
+    opacity: 1;
+}
+
+/* ===== ESTRELLAS CAYENDO ===== */
+.falling-star {
+    position: fixed;
+    font-size: 20px;
+    color: #ffd700;
+    pointer-events: none;
+    z-index: 1100;
+    animation: starFall linear infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+}
+
+@keyframes starFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ===== MENSAJE FINAL SIMPLE ===== */
+.simple-final-message {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px 40px;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: scale(0);
+    transition: all 1s ease;
+    z-index: 1200;
+    max-width: 500px;
+    text-align: center;
+    border: 3px solid #ffc107;
+    backdrop-filter: blur(10px);
+    display: block;
+}
+
+.simple-final-message.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.final-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #f57f17;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: #e91e63;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 .romantic-message.show {
@@ -370,7 +508,7 @@ body {
     font-size: 20px;
     color: #ffc107;
     pointer-events: none;
-    z-index: 3;
+    z-index: 1100;
     animation: fall linear infinite;
 }
 
@@ -514,6 +652,36 @@ body {
         max-width: 250px;
     }
     
+    .final-words-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        max-width: 600px;
+    }
+    
+    .final-word {
+        font-size: 0.95rem;
+        padding: 7px 11px;
+    }
+    
+    .restart-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        min-width: 90px;
+    }
+    
+    .simple-final-message {
+        padding: 15px 20px;
+        max-width: 300px;
+    }
+    
+    .final-text {
+        font-size: 1.6rem;
+    }
+    
+    .signature {
+        font-size: 1rem;
+    }
+    
     .music-player {
         bottom: 10px;
         right: 10px;
@@ -552,6 +720,36 @@ body {
         font-size: 0.9rem;
         padding: 10px 15px;
         max-width: 200px;
+    }
+    
+    .final-words-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        max-width: 500px;
+    }
+    
+    .final-word {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+    }
+    
+    .restart-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+        min-width: 100px;
+    }
+    
+    .simple-final-message {
+        padding: 20px 25px;
+        max-width: 350px;
+    }
+    
+    .final-text {
+        font-size: 2rem;
+    }
+    
+    .signature {
+        font-size: 1.2rem;
     }
 }
 

@@ -6,17 +6,17 @@ let sparklesInterval;
 
 // Mensajes románticos un poco más largos
 const romanticMessages = [
-    "Eres especial para mí",
-    "Me haces muy feliz",
-    "Tu sonrisa ilumina mis días",
+    "Eres especial para mí :D",
+    "como la luna lo es para la noche",
+    "como la flor que nace en primavera",
     "Eres única en el mundo",
-    "Me gustas mucho más de lo que imaginas",
+    "como las flores amarillas que brillan al amanecer",
     "Eres la más hermosa"
 ];
 
 // Palabras para formar el mensaje final
 const finalWords = [
-    "si", "tu", "fueras", "una", "flor", "amarilla", "e", "incluso", "Entre", "todas", "ellas", "tu", "serias", "la", "mas", "hermosa"
+    "si", "tu", "fueras", "una", "flor", "amarilla", "e", "incluso", "Entre", "todas", "ellas", "tu", "serias", "la", "más", "hermosa"
 ];
 
 // Posiciones para las palabras seleccionadas
@@ -60,6 +60,7 @@ function startSequence() {
     
     // Iniciar música
     setTimeout(() => {
+        console.log('Iniciando música...');
         playMusic();
     }, 1000);
 }
@@ -224,76 +225,190 @@ function organizeWordsForFinalMessage() {
         wordsContainer.classList.add('show');
     }, 500);
     
-    // Después de mostrar las palabras, agregar T.K.M
+    // Después de mostrar las palabras, mostrar botón directamente
     setTimeout(() => {
-        addTKM();
+        showRestartButton();
     }, 2000);
 }
 
-// ===== FUNCIÓN PARA AGREGAR T.K.M =====
-function addTKM() {
+
+
+// ===== FUNCIÓN PARA MOSTRAR BOTÓN DE REINICIO =====
+function showRestartButton() {
     const messagesContainer = document.getElementById('messagesContainer');
     
-    const tkmElement = document.createElement('div');
-    tkmElement.className = 'final-message';
-    tkmElement.innerHTML = `
-        <div class="tkm-message">T.K.M</div>
+    const buttonElement = document.createElement('button');
+    buttonElement.className = 'restart-button';
+    buttonElement.innerHTML = `
+        <span class="button-text">da click</span>
+        <span class="button-icon">✨</span>
+    `;
+    buttonElement.onclick = restartSequence;
+    
+    // Posicionar en el centro
+    buttonElement.style.left = '50%';
+    buttonElement.style.top = '85%';
+    buttonElement.style.transform = 'translate(-50%, -50%)';
+    
+    messagesContainer.appendChild(buttonElement);
+    
+    // Mostrar botón
+    setTimeout(() => {
+        buttonElement.classList.add('show');
+    }, 500);
+}
+
+// ===== FUNCIÓN PARA REINICIAR LA SECUENCIA =====
+function restartSequence() {
+    // Crear efecto de oscuridad
+    const darkOverlay = document.createElement('div');
+    darkOverlay.className = 'dark-overlay';
+    document.body.appendChild(darkOverlay);
+    
+    // Mostrar oscuridad
+    setTimeout(() => {
+        darkOverlay.classList.add('show');
+    }, 100);
+    
+    // Después de la oscuridad, iniciar segunda parte
+    setTimeout(() => {
+        // Limpiar todo
+        document.getElementById('messagesContainer').innerHTML = '';
+        document.getElementById('seed').classList.remove('falling', 'planted');
+        document.getElementById('flower').classList.remove('growing', 'blooming');
+        
+        // Asegurar que el contenedor de flor esté visible
+        const flowerContainer = document.getElementById('flowerContainer');
+        flowerContainer.style.display = 'flex';
+        flowerContainer.style.position = 'fixed';
+        flowerContainer.style.top = '50%';
+        flowerContainer.style.left = '50%';
+        flowerContainer.style.transform = 'translate(-50%, -50%)';
+        flowerContainer.style.zIndex = '1100';
+        
+        // Crear lluvia de estrellas sobre la pantalla negra
+        createStarRain();
+        
+        // Mostrar mensaje final simple sobre la pantalla negra
+        setTimeout(() => {
+            console.log('Intentando mostrar mensaje...');
+            showSimpleFinalMessage();
+        }, 1000);
+        
+        // NO remover la oscuridad - mantener la pantalla negra
+        
+    }, 2000);
+}
+
+// ===== FUNCIÓN PARA MOSTRAR FLOR FINAL =====
+function showFinalFlower() {
+    const flower = document.getElementById('flower');
+    
+    // Forzar visibilidad completa
+    flower.style.display = 'block';
+    flower.style.opacity = '1';
+    flower.style.transform = 'scale(1)';
+    flower.style.position = 'fixed';
+    flower.style.top = '50%';
+    flower.style.left = '50%';
+    flower.style.marginTop = '-100px';
+    flower.style.marginLeft = '-100px';
+    flower.style.zIndex = '1100';
+    flower.style.fontSize = '12rem';
+    
+    // Agregar clases de animación
+    flower.classList.add('growing', 'blooming');
+    
+    console.log('Flor mostrada:', flower.style.display, flower.style.opacity);
+}
+
+// ===== FUNCIÓN PARA MOSTRAR MENSAJE FINAL SIMPLE =====
+function showSimpleFinalMessage() {
+    // Crear elemento de mensaje simple
+    const finalElement = document.createElement('div');
+    finalElement.innerHTML = `
+        <div style="font-family: 'Dancing Script', cursive; font-size: clamp(2rem, 8vw, 3.5rem); color: #ffc107; font-weight: 700; text-shadow: 3px 3px 6px rgba(0,0,0,0.5); text-align: center; margin-bottom: 20px;">te quiero SHAOPRO :D</div>
+        <div style="font-family: 'Poppins', sans-serif; font-size: clamp(1rem, 4vw, 1.3rem); color: #e91e63; font-weight: 600; text-align: center; font-style: italic;">si te gusto mi detalle dimelo xD jajja</div>
     `;
     
-    // Posicionar debajo de las palabras
-    tkmElement.style.left = '50%';
-    tkmElement.style.top = '70%';
-    tkmElement.style.transform = 'translate(-50%, -50%)';
+    // Estilos inline para forzar visibilidad máxima y responsive
+    finalElement.style.position = 'fixed';
+    finalElement.style.top = '50vh';
+    finalElement.style.left = '50vw';
+    finalElement.style.transform = 'translate(-50%, -50%)';
+    finalElement.style.background = 'rgba(255, 255, 255, 0.95)';
+    finalElement.style.padding = 'clamp(20px, 5vw, 40px) clamp(30px, 8vw, 60px)';
+    finalElement.style.borderRadius = 'clamp(15px, 4vw, 30px)';
+    finalElement.style.boxShadow = '0 20px 50px rgba(0,0,0,0.3)';
+    finalElement.style.zIndex = '9999';
+    finalElement.style.textAlign = 'center';
+    finalElement.style.border = 'clamp(2px, 0.5vw, 4px) solid #ffc107';
+    finalElement.style.minWidth = 'clamp(300px, 80vw, 500px)';
+    finalElement.style.maxWidth = '90vw';
+    finalElement.style.opacity = '1';
+    finalElement.style.display = 'flex';
+    finalElement.style.flexDirection = 'column';
+    finalElement.style.justifyContent = 'center';
+    finalElement.style.alignItems = 'center';
+    finalElement.style.animation = 'pulse 2s infinite';
+    finalElement.style.lineHeight = '1.4';
     
-    messagesContainer.appendChild(tkmElement);
+    // Agregar al body
+    document.body.appendChild(finalElement);
     
-    // Mostrar T.K.M
-    setTimeout(() => {
-        tkmElement.classList.add('show');
-    }, 500);
+    console.log('Mensaje mostrado:', finalElement.style.display, finalElement.style.opacity);
 }
 
 // ===== FUNCIONES DE MÚSICA =====
 function playMusic() {
     const audio = document.getElementById('backgroundMusic');
-    const musicPlayer = document.getElementById('musicPlayer');
     
-    audio.play().then(() => {
-        isMusicPlaying = true;
-        musicPlayer.classList.add('show');
-        updatePlayPauseButton();
-    }).catch(error => {
-        console.log('Error al reproducir música:', error);
-        // Si no hay archivo de música, continuar sin ella
-        musicPlayer.classList.add('show');
-    });
+    if (audio) {
+        // Configurar volumen inicial
+        audio.volume = 0.7;
+        
+        audio.play().then(() => {
+            isMusicPlaying = true;
+            console.log('Música iniciada correctamente');
+        }).catch(error => {
+            console.log('Error al reproducir música:', error);
+        });
+    } else {
+        console.log('Elemento de audio no encontrado');
+    }
 }
 
 function toggleMusic() {
     const audio = document.getElementById('backgroundMusic');
     
-    if (isMusicPlaying) {
-        audio.pause();
-        isMusicPlaying = false;
-    } else {
-        audio.play().then(() => {
-            isMusicPlaying = true;
-        }).catch(error => {
-            console.log('Error al reproducir música:', error);
-        });
+    if (audio) {
+        if (isMusicPlaying) {
+            audio.pause();
+            isMusicPlaying = false;
+        } else {
+            audio.play().then(() => {
+                isMusicPlaying = true;
+            }).catch(error => {
+                console.log('Error al reproducir música:', error);
+            });
+        }
+        
+        updatePlayPauseButton();
     }
-    
-    updatePlayPauseButton();
 }
 
 function setVolume(value) {
     const audio = document.getElementById('backgroundMusic');
-    audio.volume = value / 100;
+    if (audio) {
+        audio.volume = value / 100;
+    }
 }
 
 function updatePlayPauseButton() {
     const btn = document.getElementById('playPauseBtn');
-    btn.textContent = isMusicPlaying ? '⏸️' : '▶️';
+    if (btn) {
+        btn.textContent = isMusicPlaying ? '⏸️' : '▶️';
+    }
 }
 
 // ===== FUNCIÓN PARA LLUVIA DE FLORES =====
@@ -390,6 +505,38 @@ function createSparkle() {
             sparkle.parentNode.removeChild(sparkle);
         }
     }, 2000);
+}
+
+// ===== FUNCIÓN PARA CREAR LLUVIA DE ESTRELLAS =====
+function createStarRain() {
+    // Crear múltiples estrellas cayendo
+    for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+            createFallingStar();
+        }, i * 100);
+    }
+}
+
+// ===== FUNCIÓN PARA CREAR ESTRELLA CAYENDO =====
+function createFallingStar() {
+    const star = document.createElement('div');
+    star.className = 'falling-star';
+    star.innerHTML = '⭐';
+    
+    // Posición aleatoria en la parte superior
+    star.style.left = Math.random() * 100 + '%';
+    star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+    star.style.fontSize = (Math.random() * 15 + 15) + 'px';
+    star.style.animationDelay = Math.random() * 2 + 's';
+    
+    document.body.appendChild(star);
+    
+    // Remover la estrella después de la animación
+    setTimeout(() => {
+        if (star.parentNode) {
+            star.parentNode.removeChild(star);
+        }
+    }, 5000);
 }
 
 // ===== FUNCIÓN PARA INICIAR BRILLOS =====
