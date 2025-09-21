@@ -327,8 +327,8 @@ function showSimpleFinalMessage() {
     // Crear elemento de mensaje simple
     const finalElement = document.createElement('div');
     finalElement.innerHTML = `
-        <div style="font-family: 'Dancing Script', cursive; font-size: clamp(2rem, 8vw, 3.5rem); color: #ffc107; font-weight: 700; text-shadow: 3px 3px 6px rgba(0,0,0,0.5); text-align: center; margin-bottom: 20px;">te quiere Shaopro :D</div>
-        <div style="font-family: 'Poppins', sans-serif; font-size: clamp(1rem, 4vw, 1.3rem); color: #e91e63; font-weight: 600; text-align: center; font-style: italic;">EL Mejor programador del ECUADOR xD</div>
+        <div style="font-family: 'Dancing Script', cursive; font-size: clamp(2rem, 8vw, 3.5rem); color: #ffc107; font-weight: 700; text-shadow: 3px 3px 6px rgba(0,0,0,0.5); text-align: center; margin-bottom: 20px;">Es que te quiero a mi manera :D</div>
+        <div style="font-family: 'Poppins', sans-serif; font-size: clamp(1rem, 4vw, 1.3rem); color: #e91e63; font-weight: 600; text-align: center; font-style: italic;">#SHAOPRO EL Mejor programador del ECUADOR xD</div>
     `;
     
     // Estilos inline para centrado perfecto y responsive
