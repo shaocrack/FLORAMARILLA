@@ -327,31 +327,31 @@ function showSimpleFinalMessage() {
     // Crear elemento de mensaje simple
     const finalElement = document.createElement('div');
     finalElement.innerHTML = `
-        <div style="font-family: 'Dancing Script', cursive; font-size: clamp(2rem, 8vw, 3.5rem); color: #ffc107; font-weight: 700; text-shadow: 3px 3px 6px rgba(0,0,0,0.5); text-align: center; margin-bottom: 20px;">te quiero SHAOPRO :D</div>
+        <div style="font-family: 'Dancing Script', cursive; font-size: clamp(2rem, 8vw, 3.5rem); color: #ffc107; font-weight: 700; text-shadow: 3px 3px 6px rgba(0,0,0,0.5); text-align: center; margin-bottom: 20px;">te quiere SHAOPRO :D</div>
         <div style="font-family: 'Poppins', sans-serif; font-size: clamp(1rem, 4vw, 1.3rem); color: #e91e63; font-weight: 600; text-align: center; font-style: italic;">si te gusto mi detalle dimelo xD jajja</div>
     `;
     
-    // Estilos inline para forzar visibilidad máxima y responsive
+    // Estilos inline para centrado perfecto y responsive
     finalElement.style.position = 'fixed';
-    finalElement.style.top = '50vh';
-    finalElement.style.left = '50vw';
-    finalElement.style.transform = 'translate(-50%, -50%)';
+    finalElement.style.top = '0';
+    finalElement.style.left = '0';
+    finalElement.style.width = '80vw';
+    finalElement.style.height = '80vh';
+    finalElement.style.display = 'flex';
+    finalElement.style.flexDirection = 'column';
+    finalElement.style.justifyContent = 'center';
+    finalElement.style.alignItems = 'center';
     finalElement.style.background = 'rgba(255, 255, 255, 0.95)';
-    finalElement.style.padding = 'clamp(20px, 5vw, 40px) clamp(30px, 8vw, 60px)';
+    finalElement.style.padding = 'clamp(20px, 5vw, 40px)';
     finalElement.style.borderRadius = 'clamp(15px, 4vw, 30px)';
     finalElement.style.boxShadow = '0 20px 50px rgba(0,0,0,0.3)';
     finalElement.style.zIndex = '9999';
     finalElement.style.textAlign = 'center';
     finalElement.style.border = 'clamp(2px, 0.5vw, 4px) solid #ffc107';
-    finalElement.style.minWidth = 'clamp(300px, 80vw, 500px)';
-    finalElement.style.maxWidth = '90vw';
     finalElement.style.opacity = '1';
-    finalElement.style.display = 'flex';
-    finalElement.style.flexDirection = 'column';
-    finalElement.style.justifyContent = 'center';
-    finalElement.style.alignItems = 'center';
     finalElement.style.animation = 'pulse 2s infinite';
     finalElement.style.lineHeight = '1.4';
+    finalElement.style.boxSizing = 'border-box';
     
     // Agregar al body
     document.body.appendChild(finalElement);
