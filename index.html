@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Día de las Flores Amarillas 💛</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Botón inicial -->
+        <button class="initial-button" id="initialButton" onclick="startSequence()">
+            Presiona aquí 💛
+        </button>
+
+        <!-- Mensaje principal -->
+        <div class="main-message" id="mainMessage">
+            Tal vez no sean reales<br>
+            pero conmigo no te quedas sin tus flores amarillas
+        </div>
+
+
+        <!-- Contenedor de la semilla y flor -->
+        <div class="flower-container" id="flowerContainer">
+            <div class="seed" id="seed">🌱</div>
+            <div class="flower" id="flower">🌻</div>
+        </div>
+
+        <!-- Contenedor de mensajes románticos -->
+        <div class="messages-container" id="messagesContainer">
+            <!-- Los mensajes se generarán dinámicamente -->
+        </div>
+
+        <!-- Reproductor de música -->
+       
+    </div>
+
+    <!-- Elemento de audio -->
+    <audio id="backgroundMusic" loop>
+        <source src="music/Cada Momento.mp3" type="audio/mpeg">
+        <source src="music/Cada Momento.wav" type="audio/wav">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

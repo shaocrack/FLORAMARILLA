@@ -1,0 +1,579 @@
+/* ===== RESET Y CONFIGURACIÓN BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 50%, #fff3c4 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+/* ===== BOTÓN INICIAL ===== */
+.initial-button {
+    background: linear-gradient(45deg, #ffc107, #ff8f00);
+    border: none;
+    padding: 20px 40px;
+    border-radius: 50px;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 193, 7, 0.3);
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+    z-index: 10;
+}
+
+.initial-button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(255, 193, 7, 0.4);
+    background: linear-gradient(45deg, #ff8f00, #ffc107);
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* ===== MENSAJE PRINCIPAL ===== */
+.main-message {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    color: #f57f17;
+    text-align: center;
+    line-height: 1.4;
+    margin: 30px 0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+    font-weight: 600;
+    display: block;
+}
+
+.main-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== BOTÓN SECUNDARIO ===== */
+.secondary-button {
+    background: linear-gradient(45deg, #ff6f00, #ffc107);
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 111, 0, 0.3);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: scale(0);
+    animation: buttonAppear 0.8s ease-out forwards;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.secondary-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(255, 111, 0, 0.4);
+    background: linear-gradient(45deg, #ffc107, #ff6f00);
+}
+
+.secondary-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.secondary-button:hover::before {
+    left: 100%;
+}
+
+.button-text {
+    font-family: 'Poppins', sans-serif;
+}
+
+.button-icon {
+    font-size: 1.5rem;
+    animation: flowerSpin 2s ease-in-out infinite;
+}
+
+@keyframes flowerSpin {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(10deg); }
+}
+
+@keyframes buttonAppear {
+    to { 
+        opacity: 1; 
+        transform: scale(1);
+    }
+}
+
+/* ===== CONTENEDOR DE FLOR ===== */
+.flower-container {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== SEMILLA ===== */
+.seed {
+    font-size: 3rem;
+    position: absolute;
+    opacity: 0;
+    transform: translateY(-100px);
+    transition: all 2s ease;
+    z-index: 5;
+}
+
+.seed.falling {
+    opacity: 1;
+    transform: translateY(0);
+    animation: seedFall 2s ease-out forwards;
+}
+
+@keyframes seedFall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(50px) rotate(360deg);
+    }
+}
+
+.seed.planted {
+    transform: translateY(50px) scale(0.8);
+    opacity: 0.7;
+}
+
+/* ===== FLOR ===== */
+.flower {
+    font-size: 12rem;
+    position: absolute;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 1.5s ease;
+    z-index: 6;
+    filter: drop-shadow(0 0 30px rgba(255, 193, 7, 0.7));
+}
+
+.flower.growing {
+    opacity: 1;
+    transform: scale(1);
+    animation: flowerGrow 1.5s ease-out forwards;
+}
+
+@keyframes flowerGrow {
+    0% {
+        transform: scale(0) rotate(0deg);
+    }
+    50% {
+        transform: scale(1.2) rotate(180deg);
+    }
+    100% {
+        transform: scale(1) rotate(360deg);
+    }
+}
+
+.flower.blooming {
+    animation: flowerBloom 2s ease-in-out infinite;
+}
+
+@keyframes flowerBloom {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(5deg); }
+}
+
+/* ===== CONTENEDOR DE MENSAJES ===== */
+.messages-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px 0;
+    min-height: 200px;
+}
+
+/* ===== MENSAJES ROMÁNTICOS ===== */
+.romantic-message {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 12px 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border: 2px solid #ffc107;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #333;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.8s ease;
+    z-index: 8;
+    max-width: 250px;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+/* ===== PALABRAS SELECCIONADAS ===== */
+.selected-word {
+    position: absolute;
+    background: linear-gradient(45deg, #e91e63, #f06292);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.6s ease;
+    z-index: 9;
+    border: 2px solid white;
+    cursor: pointer;
+}
+
+.selected-word:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(233, 30, 99, 0.6);
+}
+
+.selected-word.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ===== MENSAJE FINAL ===== */
+.final-message {
+    position: absolute;
+    background: linear-gradient(45deg, #ffc107, #ff8f00);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 25px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(255, 193, 7, 0.5);
+    opacity: 0;
+    transform: scale(0);
+    transition: all 1s ease;
+    z-index: 10;
+    max-width: 400px;
+    line-height: 1.5;
+    border: 3px solid white;
+}
+
+/* ===== CONTENEDOR DE PALABRAS FINALES ===== */
+.final-words-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    max-width: 600px;
+    opacity: 0;
+    transition: all 1s ease;
+    z-index: 11;
+}
+
+.final-words-container.show {
+    opacity: 1;
+}
+
+.final-word {
+    background: linear-gradient(45deg, #e91e63, #f06292);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+    border: 2px solid white;
+    transform: scale(0);
+    animation: wordAppear 0.5s ease-out forwards;
+}
+
+@keyframes wordAppear {
+    to {
+        transform: scale(1);
+    }
+}
+
+.final-message.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.tkm-message {
+    font-size: 2rem;
+    font-family: 'Dancing Script', cursive;
+    margin-top: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.romantic-message.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.romantic-message.hide {
+    opacity: 0;
+    transform: scale(0) rotate(180deg);
+}
+
+/* Posiciones de los mensajes formando un corazón alrededor de la flor */
+.romantic-message:nth-child(1) { top: 5%; left: 50%; transform: translateX(-50%); }
+.romantic-message:nth-child(2) { top: 15%; left: 20%; }
+.romantic-message:nth-child(3) { top: 15%; right: 20%; }
+.romantic-message:nth-child(4) { top: 35%; left: 10%; }
+.romantic-message:nth-child(5) { top: 35%; right: 10%; }
+.romantic-message:nth-child(6) { bottom: 10%; left: 50%; transform: translateX(-50%); }
+
+/* ===== FLORES CAYENDO ===== */
+.falling-flower {
+    position: fixed;
+    font-size: 20px;
+    color: #ffc107;
+    pointer-events: none;
+    z-index: 3;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ===== EXPLOSIÓN DE FLORES ===== */
+.flower-explosion {
+    position: fixed;
+    font-size: 30px;
+    color: #ffc107;
+    pointer-events: none;
+    z-index: 7;
+    animation: explode 3s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5) rotate(180deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0.5) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ===== REPRODUCTOR DE MÚSICA ===== */
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 50px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 0.5s ease;
+}
+
+.music-player.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.music-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.play-pause-btn {
+    background: #ffc107;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.play-pause-btn:hover {
+    background: #ff8f00;
+    transform: scale(1.1);
+}
+
+.volume-control {
+    width: 80px;
+    height: 5px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* ===== EFECTOS ESPECIALES ===== */
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #ffc107;
+    border-radius: 50%;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .initial-button {
+        padding: 15px 30px;
+        font-size: 1.2rem;
+    }
+    
+    .main-message {
+        font-size: 1.5rem;
+        margin: 20px 0;
+    }
+    
+    .secondary-button {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .flower-container {
+        width: 150px;
+        height: 250px;
+    }
+    
+    .seed {
+        font-size: 2.5rem;
+    }
+    
+    .flower {
+        font-size: 10rem;
+    }
+    
+    .romantic-message {
+        font-size: 1rem;
+        padding: 12px 20px;
+        max-width: 250px;
+    }
+    
+    .music-player {
+        bottom: 10px;
+        right: 10px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .initial-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+    
+    .main-message {
+        font-size: 1.2rem;
+    }
+    
+    .flower-container {
+        width: 120px;
+        height: 200px;
+    }
+    
+    .seed {
+        font-size: 2rem;
+    }
+    
+    .flower {
+        font-size: 8rem;
+    }
+    
+    .romantic-message {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+        max-width: 200px;
+    }
+}
+
+/* ===== CLASES DE UTILIDAD ===== */
+.hidden {
+    display: none !important;
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-out {
+    animation: fadeOut 1s ease-out;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
